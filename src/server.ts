@@ -68,7 +68,6 @@ if (!Boolean(process?.env?.ANIWATCH_API_VERCEL_DEPLOYMENT)) {
   );
 
   // NOTE: remove the `if` block below for personal deployments
-  if (ISNT_PERSONAL_DEPLOYMENT) {
     const interval = 9 * 60 * 1000; // 9mins
 
     // don't sleep
@@ -80,7 +79,7 @@ if (!Boolean(process?.env?.ANIWATCH_API_VERCEL_DEPLOYMENT)) {
           console.error(err.message);
         });
     }, interval);
-  }
+  
 }
 
 export default app;
