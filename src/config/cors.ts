@@ -5,11 +5,8 @@ config();
 
 const allowedOrigins = process.env.ANIWATCH_API_CORS_ALLOWED_ORIGINS
   ? process.env.ANIWATCH_API_CORS_ALLOWED_ORIGINS.split(",")
-<<<<<<< HEAD
-  : ["http://localhost:4000", "*","http://localhost:5173"];
-=======
-  : ["http://localhost:5173", "https://animeweeb-dev.onrender.com","http://localhost:4173"];
->>>>>>> 384efc158e9c1e92526440d966c3add94eff1ac5
+  : ["https://animeweeb-dev.onrender.com", "http://localhost:4173"];
+
 
 const corsConfig = cors({
   allowMethods: ["GET"],

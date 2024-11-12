@@ -68,21 +68,6 @@ if (!Boolean(process?.env?.ANIWATCH_API_VERCEL_DEPLOYMENT)) {
   );
 
   // NOTE: remove the `if` block below for personal deployments
-<<<<<<< HEAD
-
-  const interval = 9 * 60 * 1000; // 9mins
-
-  // don't sleep
-  setInterval(() => {
-    console.log("aniwatch-api HEALTH_CHECK at", new Date().toISOString());
-    https
-      .get(`https://${ANIWATCH_API_HOSTNAME}/health`)
-      .on("error", (err) => {
-        console.error(err.message);
-      });
-  }, interval);
-
-=======
     const interval = 9 * 60 * 1000; // 9mins
 
     // don't sleep
@@ -95,7 +80,6 @@ if (!Boolean(process?.env?.ANIWATCH_API_VERCEL_DEPLOYMENT)) {
         });
     }, interval);
   
->>>>>>> 384efc158e9c1e92526440d966c3add94eff1ac5
 }
 
 export default app;
