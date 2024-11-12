@@ -11,7 +11,7 @@ const corsConfig = cors({
   allowMethods: ["GET"],
   maxAge: 600,
   credentials: true,
-  origin: (origin) => allowedOrigins.includes(origin) ? origin : false,
+  origin: (origin) => (allowedOrigins.includes(origin) ? origin : null),
 });
 
 export default corsConfig;
