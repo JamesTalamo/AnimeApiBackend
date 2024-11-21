@@ -1,4 +1,3 @@
-import https from "https";
 import { config } from "dotenv";
 
 import corsConfig from "./config/cors.js";
@@ -32,18 +31,24 @@ if (ISNT_PERSONAL_DEPLOYMENT) {
   app.use(ratelimit);
 }
 
+// Serve static files
 app.use("/", serveStatic({ root: "public" }));
+
+// Health check route
 app.get("/health", (c) => c.text("OK", { status: 200 }));
 
+// Other routes
 app.basePath(BASE_PATH).route("/hianime", hianimeRouter);
 app
   .basePath(BASE_PATH)
   .get("/anicrush", (c) => c.text("Anicrush could be implemented in future."));
 
+// 404 handler
 app.notFound((c) =>
   c.json({ status: 404, message: "Resource Not Found" }, 404)
 );
 
+// Error handler
 app.onError((err, c) => {
   console.error(err);
   const res = { status: 500, message: "Internal Server Error" };
@@ -56,7 +61,7 @@ app.onError((err, c) => {
   return c.json(res, { status: res.status });
 });
 
-// NOTE: this env is "required" for vercel deployments
+// Server setup
 if (!Boolean(process?.env?.ANIWATCH_API_VERCEL_DEPLOYMENT)) {
   serve({
     port: PORT,
@@ -66,20 +71,7 @@ if (!Boolean(process?.env?.ANIWATCH_API_VERCEL_DEPLOYMENT)) {
       "\x1b[1;36m" + `aniwatch-api at http://localhost:${PORT}` + "\x1b[0m"
     )
   );
-
-  // NOTE: remove the `if` block below for personal deployments
-    const interval = 9 * 60 * 1000; // 9mins
-
-    // don't sleep
-    setInterval(() => {
-      console.log("aniwatch-api HEALTH_CHECK at", new Date().toISOString());
-      https
-        .get(`https://${ANIWATCH_API_HOSTNAME}/health`)
-        .on("error", (err) => {
-          console.error(err.message);
-        });
-    }, interval);
-  
 }
 
 export default app;
+
