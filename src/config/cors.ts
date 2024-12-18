@@ -3,9 +3,10 @@ import { cors } from "hono/cors";
 
 config();
 
-const allowedOrigins = process.env.ANIWATCH_API_CORS_ALLOWED_ORIGINS
-  ? process.env.ANIWATCH_API_CORS_ALLOWED_ORIGINS.split(",")
-  : ["https://animeweeb.vercel.app", "http://localhost:4173","http://localhost:5173", "*"];
+// const allowedOrigins = process.env.ANIWATCH_API_CORS_ALLOWED_ORIGINS
+//   ? process.env.ANIWATCH_API_CORS_ALLOWED_ORIGINS.split(",")
+//   : ["https://animeweeb.vercel.app", "http://localhost:4173","http://localhost:5173", "*"];
+const allowedOrigins = ["*"];  // This will allow any origin
 
 
 const corsConfig = cors({
